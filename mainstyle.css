@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;500;600;700&family=Sora:wght@100;200;300;400;500;600;700;800&display=swap');
+
+:root{
+        
+    --f1: 'Sora', sans-serif; 
+    --f2: 'Dancing Script', cursive;    
+    
+    --shadow: drop-shadow(0.0rem 0.0rem 1rem rgba(0, 0, 0, 1));
+    
+    /* motyw - Dark */
+    --c0: #222; /* background color */  --c0f: brightness(0) invert(10%) sepia(0%) saturate(10%) hue-rotate(177deg) brightness(103%) contrast(92%);
+    --c1: #111; /* nav color */         --c1f: brightness(0) invert(0%) sepia(5%) saturate(2916%) hue-rotate(36deg) brightness(94%) contrast(87%);
+    --c2: #fff; /* text/hover color */  --c2f: brightness(0) invert(100%);
+    
+    /* motyw - Pink */
+    /*--c0: #1d0c13; --c0f: brightness(0) invert(5%) sepia(6%) saturate(7500%) hue-rotate(287deg) brightness(99%) contrast(96%);
+    --c1: #ff708d; --c1f: brightness(0) invert(67%) sepia(21%) saturate(6531%) hue-rotate(308deg) brightness(103%) contrast(101%);
+    --c2: #ffffff; --c2f: brightness(0) invert(100%);
+    
+    /* motyw - Granat */
+    --c0: #1b252f; --c0f: brightness(0) invert(8%) sepia(51%) saturate(557%) hue-rotate(169deg) brightness(92%) contrast(86%);
+    --c1: #0a0e12; --c1f: brightness(0) invert(4%) sepia(3%) saturate(6476%) hue-rotate(171deg) brightness(100%) contrast(97%);
+    --c2: #ffffff; --c2f: brightness(0) invert(100%);
+    
+    /* */
+}
+
+html{ font-size: 16px; font-family: var(--f1); } 
+body{ margin: 0; 
+
+    background: url(png/wallpaper1.png); 
+    background-size: cover; 
+    background-attachment: fixed;/* potrzebne do działania .gls */ 
+}
+
+/* "szklane" tło */
+.gls{
+    position: relative;
+    z-index: 1;
+    background: inherit;
+    overflow: hidden;
+}
+.gls::before{
+    content: "";
+    position: absolute;
+    background: inherit;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 2000px rgba(255,255,255,0.2);
+    filter: blur(20px);
+    margin: -50px;
+}
+
+#stage1{
+    background: inherit;
+    height: 100vh; width: 100vw;
+    display: flex; flex-direction: row; justify-content: center; align-items: center;
+}
+
+#linkbar{
+    background: inherit;
+    position: absolute;
+    height: 8rem; width: auto;
+}
+#linkbar>a{ background: inherit; }
+
+.link{
+    float: left;
+    height: 6rem; width: 6rem; margin: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 0 0.5rem rgba(0,0,0,0.6);
+    transition: height 0.5s;
+}
+.link:hover{
+    height: 8rem;
+    cursor: pointer;
+}
+.link:hover>.linkBackground{
+    filter: none;
+}
+
+.linkBackground{
+    height: 6rem; width: 6rem;
+    background-size: 6rem;
+    filter: var(--c2f); 
+}
+.linkName{
+    height: 2rem; width: 6rem;
+    text-align: center; line-height: 2rem;
+    font-weight: 300; color: aliceblue; text-shadow: 0 0 3px rgba(0,0,0,1);
+}
+
+#youtubeLink>.linkBackground{   background-image: url(png/youtube.png);     }
+#facebookLink>.linkBackground{  background-image: url(png/facebook.png);    }
+#twitchLink>.linkBackground{    background-image: url(png/twitch.png);      }
+#netflixLink>.linkBackground{   background-image: url(png/netflix.png);     }
+#gmailLink>.linkBackground{     background-image: url(png/gmail.png);       }
+#glovoLink>.linkBackground{     background-image: url(png/glovo.png);       }
+
+#addNewLink{
+    background: inherit; 
+    position: absolute; right: -6rem;
+    height: 3rem; width: 3rem; margin: 2.5rem;
+    border-radius: 100%;
+    box-shadow: 0 0 0.5rem rgba(0,0,0,1);
+    opacity: 0.5;
+    transition: opacity 0.5s;
+}
+#addNewLink>svg{
+    height: 1.5rem; width: 1.5rem; margin: 0.75rem;
+    filter: var(--c2f);
+}
+#addNewLink:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+
+
+#zmianaTla{
+    position: absolute; left: 1rem; bottom: 1rem;
+    width: auto; height: auto;
+    background: inherit;
+}
+#zmianaTla>div{
+    float: left;
+    width: 2rem; height: 2rem; margin-right: 0.5rem;
+    border-radius: 0.2rem;
+    text-align: center; line-height: 2rem;
+    box-shadow: 0 0 0.5rem rgba(0,0,0,0.6);
+    user-select: none;
+    cursor: pointer;
+}
+#zmianaTla>div:hover{
+    filter: brightness(2);
+}
+#zmianaTla>h1{
+    display: block;
+    margin: 0;
+    font-size: 1.2rem;
+    color: #fff;
+    font-weight: 300;
+}
