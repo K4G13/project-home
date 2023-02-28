@@ -6,41 +6,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- do @media w css -->
     <link rel="stylesheet" href="style/main.css">
+    <script src="scripts/tile-drag-logic.js" defer></script>
+
+    <!-- temp for dev usage -->
+    <link rel="stylesheet" href="style/dev-temp.css">
+    <script src="scripts/dev-temp.js" defer></script>
     
 </head>
-<body>
+<body>   
     
-    <div id='settings-btt' class='gls'></div>
+    <div id='dev-switch' onclick='switchDevMode()'>dev</div>
 
     <div id='tile-row'>
 
-        <div class='tile'>            
-            <div class='tileBG gls'></div>
-            <div class='edit-btt gls'></div>
-            <div class='title gls'>placeholder</div>
-        </div>
-
-        <div class='tile'>            
-            <div class='tileBG gls'></div>
-            <div class='edit-btt gls'></div>
-            <div class='title gls'>placeholder</div>
-        </div>
-
-        <div class='tile'>            
-            <div class='tileBG gls'></div>
-            <div class='edit-btt gls'></div>
-            <div class='title gls'>placeholder</div>
-        </div>
-
-        <div class='tile'>            
-            <div class='tileBG gls'></div>
-            <div class='edit-btt gls'></div>
-            <div class='title gls'>placeholder</div>
-        </div>
-
-        <div id='add-btt' class='gls'>+</div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
+        <div class='tile'></div>
 
     </div>
+
+    <div id='edit-area'></div>
+    <div id='delete-area'></div>
     
 </body>
 </html>
