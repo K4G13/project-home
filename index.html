@@ -2,78 +2,45 @@
 <html>
 <head>
     
-    <title>Home V5.0 :)</title>
+    <title>Home V6.0</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- do @media w css -->
-    <link rel="stylesheet" href="mainstyle.css">
+    <link rel="stylesheet" href="style/main.css">
     
 </head>
 <body>
     
-    <nav>
-         <!-- https://iconmonstr.com -->
-    </nav> 
-    
-    <div id="stage1">
-    
-        <div id="linkbar">
-        
-            <a href="https://www.youtube.com" target="_blank"><div id="youtubeLink" class="link gls">            
-                <div class="linkBackground"></div>  
-                <div class="linkName">youtube</div>
-            </div></a>
-            <a href="https://www.facebook.com" target="_blank"><div id="facebookLink" class="link gls">
-                <div class="linkBackground"></div>
-                <div class="linkName">facebook</div>
-            </div></a>
-            <a href="https://www.twitch.tv/directory/following" target="_blank"><div id="twitchLink" class="link gls">
-                <div class="linkBackground"></div>
-                <div class="linkName">twitch</div>
-            </div></a>
-            <a href="https://www.netflix.com/pl/" target="_blank"><div id="netflixLink" class="link gls">
-                <div class="linkBackground"></div>
-                <div class="linkName">netflix</div>
-            </div></a>
-            <a href="https://mail.google.com/mail/u/0/#inbox" target="_blank"><div id="gmailLink" class="link gls">
-                <div class="linkBackground"></div>
-                <div class="linkName">gmail</div>
-            </div></a>
-            <a href="https://glovoapp.com/pl/pl/poznan/" target="_blank"><div id="glovoLink" class="link gls">
-                <div class="linkBackground"></div>
-                <div class="linkName">glovo</div>
-            </div></a>
-            
-            <div id="addNewLink" class="gls">
-                <svg xmlns="http://www.w3.org/2000/svg" width="2rem" height="2rem" viewBox="0 0 24 24"><path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z"/></svg>
-            </div>
-            
+    <div id='settings-btt' class='gls'></div>
+
+    <div id='tile-row'>
+
+        <div class='tile'>            
+            <div class='tileBG gls'></div>
+            <div class='edit-btt gls'></div>
+            <div class='title gls'>placeholder</div>
         </div>
-        
-        <div id="zmianaTla">
-            <h1>zmiana tła:</h1>
-            <div class="gls" onclick="wpchange(1)">1</div>
-            <div class="gls" onclick="wpchange(2)">2</div>
-            <div class="gls" onclick="wpchange(3)">3</div>
-            <div class="gls" onclick="wpchange(4)">4</div>
-            <div class="gls" onclick="wpchange(5)">5</div>
+
+        <div class='tile'>            
+            <div class='tileBG gls'></div>
+            <div class='edit-btt gls'></div>
+            <div class='title gls'>placeholder</div>
         </div>
-    
+
+        <div class='tile'>            
+            <div class='tileBG gls'></div>
+            <div class='edit-btt gls'></div>
+            <div class='title gls'>placeholder</div>
+        </div>
+
+        <div class='tile'>            
+            <div class='tileBG gls'></div>
+            <div class='edit-btt gls'></div>
+            <div class='title gls'>placeholder</div>
+        </div>
+
+        <div id='add-btt' class='gls'>+</div>
+
     </div>
-    
-    <script>
-        if (!localStorage.getItem("wallpaper")) localStorage.setItem("wallpaper", 1);
-        else { document.body.style.background = "url(png/wallpaper"+localStorage.getItem("wallpaper")+".png)"; document.body.style.backgroundSize = "cover"; document.body.style.backgroundAttachment = "fixed"; }
-        console.log("obecna tapeta: "+localStorage.getItem("wallpaper"));
-        
-        function wpchange(index){
-            document.body.style.background = "url(png/wallpaper"+index+".png)";
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundAttachment = "fixed";
-            localStorage.setItem("wallpaper", index);
-            console.log("obecna tapeta: "+localStorage.getItem("wallpaper"));
-        }
-    
-    </script>
     
 </body>
 </html>
