@@ -1,47 +1,78 @@
+for( const el of tiles = document.querySelectorAll('#tile-row .tile') )
+    el.style.order = Array.from(tiles).indexOf(el)
+
+var mousePos = {x:0, y:0}
+onmousemove = function(e){mousePos.x = e.clientX, mousePos.y = e.clientY}
+
 var tileID = -1
-
-for( const el of tiles = document.querySelectorAll('#tile-row>.tile') )
+for( const el of tiles = document.querySelectorAll('#tile-row .tile') )
     el.setAttribute("onmousedown", `tileID = ${Array.from(tiles).indexOf(el)};`)    
-
-var timer;
+var MOVETILES = true
+var mouseDownInterval 
 document.addEventListener("mousedown", function(){
-
-    if(tileID!=-1){ 
-
-        document.querySelector("#edit-area").classList.add("active")
-        document.querySelector("#delete-area").classList.add("active")
-        
-        document.querySelector('#tile-row').innerHTML+= "<div class='tile dummy'>DUMMY</div>"
-        tileMargin = window.getComputedStyle(document.querySelectorAll('#tile-row>.tile')[tileID]).getPropertyValue('margin')
-        tileMargin = tileMargin.substring(0, tileMargin.length - 2)
-        mouseOffSetX = mouseX - (document.querySelectorAll('#tile-row>.tile')[tileID].getBoundingClientRect().left - tileMargin)
-        mouseOffSetY = mouseY - (document.querySelectorAll('#tile-row>.tile')[tileID].getBoundingClientRect().top  - tileMargin)        
-        document.querySelector('#tile-row>.tile.dummy').style.left= (document.querySelectorAll('#tile-row>.tile')[tileID].getBoundingClientRect().left - tileMargin) + "px"
-        document.querySelector('#tile-row>.tile.dummy').style.top = (document.querySelectorAll('#tile-row>.tile')[tileID].getBoundingClientRect().top - tileMargin) + "px"
-
-        timer=setInterval(function(){  
-            console.log(`mouse is %cDOWN %cand on tile%c[${tileID}]`,"color: lightblue","color: none;","color: lightblue")
-            //console.log(`x: ${mouseX}|${mouseOffSetX}   y: ${mouseY}|${mouseOffSetY}`)
-            document.querySelector('#tile-row>.tile.dummy').style.left= mouseX - mouseOffSetX + "px"
-            document.querySelector('#tile-row>.tile.dummy').style.top = mouseY - mouseOffSetY + "px"
-
-        }, 10); }        
-    else 
-        console.log(`mouse is %cDOWN`,"color: lightblue")  
-    
-});
+    mouseDownInterval = setInterval(function(){  
+        if( MOVETILES && tileID>=0 ) pickUpTile()
+    }, 10 )    
+})
 document.addEventListener("mouseup", function(){
-    console.log("mouse is %cUP","color: lightblue")
-    if (timer) clearInterval(timer)
-    document.querySelector("#edit-area").classList.remove("active")
-    document.querySelector("#delete-area").classList.remove("active")
-    if(tileID!=-1){
-        posY = window.getComputedStyle(document.querySelector('#tile-row>.tile.dummy')).getPropertyValue('top')
-        posY = posY.substring(0, posY.length - 2)
-        if(posY <= 100)
-            console.log("EDIT TILE")
-        document.querySelector('#tile-row>.tile.dummy').outerHTML = "" 
-    }   
-    tileID = -1
-});
-onmousemove = function(e){mouseX = e.clientX, mouseY = e.clientY}
+    if (mouseDownInterval) clearInterval(mouseDownInterval)
+    if( MOVETILES && tileID>=0 ) putDownTile()
+    tileID=-1
+})
+// document.addEventListener("mouseout", function(){
+//     if (mouseDownInterval ) clearInterval(mouseDownInterval)
+//     if( MOVETILES && tileID>=0 ) putDownTile()
+//     tileID=-1
+// })
+
+var deltaPos = {x:0, y:0}
+var tileMargin = window.getComputedStyle(document.querySelector("#tile-row .tile")).marginTop; tileMargin = Number(tileMargin.substring(0,tileMargin.length - 2))
+function pickUpTile(){
+    if(document.querySelector('body').classList.contains('dev'))
+        console.log("mouse is %cUP","color: cyan")
+    /// DO ONCE
+    if( !document.querySelector("#tile-row .tile.dummy") ){
+        let dummyTile = document.querySelectorAll("#tile-row .tile")[tileID].cloneNode(true)
+        dummyTile.classList.add('dummy')
+        document.querySelector("#tile-row").innerHTML += dummyTile.outerHTML
+        deltaPos.x = mousePos.x - (document.querySelectorAll("#tile-row .tile")[tileID].getBoundingClientRect().left - tileMargin)
+        deltaPos.y = mousePos.y - (document.querySelectorAll("#tile-row .tile")[tileID].getBoundingClientRect().top - tileMargin)
+        document.querySelector('#edit-area').classList.add('active')
+        document.querySelector('#delete-area').classList.add('active')
+    }
+    /// LOOP
+    else{ 
+        document.querySelector("#tile-row .tile.dummy").style.left = (mousePos.x - deltaPos.x) + "px"
+        document.querySelector("#tile-row .tile.dummy").style.top = (mousePos.y - deltaPos.y) + "px"
+    }
+}
+
+function putDownTile(){
+    if(document.querySelector('body').classList.contains('dev'))
+        console.log("mouse is %cDOWN","color: crimson")
+    document.querySelector("#tile-row .tile.dummy").outerHTML = ""    
+    document.querySelector('#edit-area').classList.remove('active')
+    document.querySelector('#delete-area').classList.remove('active')
+
+    var editArea = document.querySelector('#edit-area').getBoundingClientRect()
+    if( mousePos.x >= editArea.left && mousePos.x <= editArea.left + editArea.width &&
+        mousePos.y >= editArea.top  && mousePos.y <= editArea.top  + editArea.height )
+        console.log("EDIT TILE")
+
+    var deleteArea = document.querySelector('#delete-area').getBoundingClientRect()
+    if( mousePos.x >= deleteArea.left && deleteArea.x <= deleteArea.left + deleteArea.width &&
+        mousePos.y >= deleteArea.top  && deleteArea.y <= deleteArea.top  + deleteArea.height )
+        deleteTile(tileID)    
+}
+
+function deleteTile(tileID){
+    if(document.querySelector('body').classList.contains('dev'))
+        console.log(`%cdelete tile in row: ${tileID}`,"color: crimson")
+
+    // document.querySelectorAll('#tile-row .tile')[tileID].style.background = "red"   
+    document.querySelectorAll('#tile-row .tile')[tileID].remove()
+    for( const el of tiles = document.querySelectorAll('#tile-row .tile') ){
+        el.style.order = Array.from(tiles).indexOf(el)
+        el.setAttribute("onmousedown", `tileID = ${Array.from(tiles).indexOf(el)};`) 
+    }
+}

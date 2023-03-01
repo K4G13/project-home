@@ -6,32 +6,23 @@ body{
     background-color: #222;
     color: #fff;
 
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    height: 100vh; width: 100vw;
+    display: flex; justify-content: center; align-items: center;   
+    overflow: hidden; 
 
     /* background-image: url(../resorces/wallpapers/wallpaper3.png);
     background-size: cover; 
     background-position: center;
     background-attachment: fixed; */
-
-    overflow: hidden;
-
 }
 
 #tile-row{
-    min-height: 100px;
-    min-width: 100px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    min-height: 100px; min-width: 100px;
+    display: flex; flex-wrap: wrap; justify-content: center;
 }
 
 .tile{
-    height: 100px;
-    width: 100px;
+    height: 100px; width: 100px;
     margin: 10px;
     user-select: none;
 }
@@ -45,19 +36,18 @@ body{
 }
 
 #edit-area{
-    height: 100px;
-    width: 100vw;
     position: absolute;
+    height: 100px; width: 100vw;
     top: 0;
 }
 /* #edit-area.active{
 } */
 
 #delete-area{
-    height: 100px;
-    width: 100vw;
     position: absolute;
+    height: 100px; width: 100vw;
     bottom: 0;
 }
 /* #delete-area.active{
 } */
+
