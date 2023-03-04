@@ -43,6 +43,15 @@ body{
     margin-right: 0;
 }
 
+#add-btt{
+    height: 100px; width: 100px;
+    margin: 10px;
+    user-select: none;
+    cursor: pointer;
+    order: 999999;
+    line-height: 100px; text-align: center;
+}
+
 #edit-area{
     position: absolute;
     height: 100px; width: 100vw;
