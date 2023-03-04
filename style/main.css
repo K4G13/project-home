@@ -25,6 +25,8 @@ body{
     height: 100px; width: 100px;
     margin: 10px;
     user-select: none;
+    overflow: hidden;
+    transition: width 0.2s;
 }
 
 .tile:hover{
@@ -33,6 +35,12 @@ body{
 
 .tile.dummy{
     position: absolute;
+}
+
+.tile.squish{
+    width: 0;
+    margin-left: 0;
+    margin-right: 0;
 }
 
 #edit-area{

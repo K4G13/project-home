@@ -1,3 +1,5 @@
+document.querySelector('body').innerHTML += "<div id='dev-switch' onclick='switchDevMode()'>dev</div>"
+
 function switchDevMode(){
 
     if( !document.querySelector('#dev-switch').classList.contains('on') ){
@@ -7,7 +9,8 @@ function switchDevMode(){
         document.querySelector('body').classList.add('dev')
                 
         for( const el of tiles = document.querySelectorAll('#tile-row .tile') )
-            el.style.setProperty("--devIndex", '"'+Array.from(tiles).indexOf(el)+'"');            
+            el.style.setProperty("--devIndex", '"'+Array.from(tiles).indexOf(el)+'"');     
+        /*TEMP FOR DEV*/maxDevIndex = document.querySelectorAll('#tile-row .tile').length     
     }
     else{
         document.querySelector('#dev-switch').classList.remove('on')

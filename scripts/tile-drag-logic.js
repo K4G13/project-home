@@ -68,11 +68,24 @@ function putDownTile(){
 function deleteTile(tileID){
     if(document.querySelector('body').classList.contains('dev'))
         console.log(`%cdelete tile in row: ${tileID}`,"color: crimson")
+    document.querySelectorAll('#tile-row .tile')[tileID].classList.add('squish')
+    setTimeout(() => {
+        document.querySelectorAll('#tile-row .tile')[tileID].remove()
+        for( const el of tiles = document.querySelectorAll('#tile-row .tile') ){
+            el.style.order = Array.from(tiles).indexOf(el)
+            el.setAttribute("onmousedown", `tileID = ${Array.from(tiles).indexOf(el)};`) 
+        }
+    }, 200);
+}
 
-    // document.querySelectorAll('#tile-row .tile')[tileID].style.background = "red"   
-    document.querySelectorAll('#tile-row .tile')[tileID].remove()
-    for( const el of tiles = document.querySelectorAll('#tile-row .tile') ){
-        el.style.order = Array.from(tiles).indexOf(el)
-        el.setAttribute("onmousedown", `tileID = ${Array.from(tiles).indexOf(el)};`) 
-    }
+function addTile(){
+    document.querySelector("#tile-row").innerHTML += "<div class='tile squish'></div>"
+    let el = document.querySelector("#tile-row .tile:last-of-type")
+    el.style.order = document.querySelectorAll('#tile-row .tile').length - 1
+    el.setAttribute("onmousedown", `tileID = ${ document.querySelectorAll('#tile-row .tile').length - 1 };`) 
+    /*TEMP FOR DEV*/el.style.setProperty("--devIndex", '"'+( maxDevIndex )+'"');    
+    /*TEMP FOR DEV*/maxDevIndex++
+    setTimeout(() => {
+        el.classList.remove('squish')
+    }, 1);
 }
