@@ -34,6 +34,7 @@ function pickUpTile(){
     if( !document.querySelector("#tile-row .tile.dummy") ){
         let dummyTile = document.querySelectorAll("#tile-row .tile")[tileID].cloneNode(true)
         dummyTile.classList.add('dummy')
+        dummyTile.removeAttribute('href')
         document.querySelector("#tile-row").innerHTML += dummyTile.outerHTML
         deltaPos.x = mousePos.x - (document.querySelectorAll("#tile-row .tile")[tileID].getBoundingClientRect().left - tileMargin)
         deltaPos.y = mousePos.y - (document.querySelectorAll("#tile-row .tile")[tileID].getBoundingClientRect().top - tileMargin)
@@ -79,11 +80,12 @@ function deleteTile(tileID){
 }
 
 function addTile(){
-    document.querySelector("#tile-row").innerHTML += "<div class='tile squish'></div>"
+    document.querySelector("#tile-row").innerHTML += `<a class='tile' href="#"></a>`
     let el = document.querySelector("#tile-row .tile:last-of-type")
+    el.classList.add('squish')
     el.style.order = document.querySelectorAll('#tile-row .tile').length - 1
     el.setAttribute("onmousedown", `tileID = ${ document.querySelectorAll('#tile-row .tile').length - 1 };`) 
-    /*TEMP FOR DEV*/el.style.setProperty("--devIndex", '"'+( maxDevIndex )+'"');    
+    /*TEMP FOR DEV*/el.style.setProperty("--devIndex", "'"+( maxDevIndex )+"'");    
     /*TEMP FOR DEV*/maxDevIndex++
     setTimeout(() => {
         el.classList.remove('squish')

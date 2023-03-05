@@ -15,13 +15,20 @@
 </head>
 <body>
 
+    <div id='editPanel'>
+        <textarea id="link" placeholder="link"></textarea>
+        <textarea id="title" placeholder="title"></textarea>
+        <button id="cancel-btt">cancel</button>
+        <button id="add-btt">add</button>
+    </div>
+
     <div id='tile-row'>
 
-        <div class='tile'></div>
-        <div class='tile'></div>
-        <div class='tile'></div>
+        <a class='tile' href="#"></a>
+        <a class='tile' href="#"></a>
+        <a class='tile' href="#"></a>
 
-        <div id='add-btt' onclick="addTile()"></div>
+        <div id='add-tile-btt' onclick="addTile()"></div>
 
     </div>
 
