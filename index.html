@@ -1,39 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html version="6.1" lang="pl">
 <head>
 
-    <title>Home V6.0</title>
+    <title>Home</title>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    <!-- do @media w css -->
-    <link rel="stylesheet" href="style/main.css">
-    <script src="scripts/tile-drag-logic.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- temp for dev usage -->
-    <link rel="stylesheet" href="style/dev-temp.css">
-    <script src="scripts/dev-temp.js" defer></script>
+    <link rel="stylesheet" href="style/main.css">
+    <link rel="stylesheet" href="style/scrollbar.css">
+    <link rel="stylesheet" href="style/a_style.css">
+    <link rel="stylesheet" href="style/add-btt_style.css">
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script src="scripts/constext_menu.js" defer></script>
+    <link rel="stylesheet" href="style/context_menu.css">
+
+    <script src="scripts/edit_menu.js" defer></script>
+    <link rel="stylesheet" href="style/edit_menu.css">
+    
+    <script src="scripts/save_localy.js" defer></script>
 
 </head>
 <body>
 
-    <div id='editPanel'>
-        <textarea id="link" placeholder="link"></textarea>
-        <textarea id="title" placeholder="title"></textarea>
-        <button id="cancel-btt">cancel</button>
-        <button id="add-btt">add</button>
-    </div>
+    <div id="container">
 
-    <div id='tile-row'>
-
-        <a class='tile' href="#"></a>
-        <a class='tile' href="#"></a>
-        <a class='tile' href="#"></a>
-
-        <div id='add-tile-btt' onclick="addTile()"></div>
+        <button id='add-btt'>+</button>
+      
+        <a href='https://www.youtube.com/' target="_blank" title="youtube">youtube</a>
+        <a href='https://www.facebook.com/' target="_blank" title="facebook">facebook</a>
+        <a href='https://www.twitch.tv/directory/following' target="_blank" title="twitch">twitch</a>
+        <a href='https://www.netflix.com/' target="_blank" title="netflix">netflix</a>
+        <a href='https://mail.google.com/mail/u/0/#inbox' target="_blank" title="gmail">gmail</a>
+        <a href='https://glovoapp.com/pl/pl/poznan/' target="_blank" title="glovo">glovo</a>
 
     </div>
-
-    <div id='edit-area'></div>
-    <div id='delete-area'></div>
     
 </body>
 </html>
