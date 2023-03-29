@@ -37,6 +37,7 @@ function loadFromLocal(){
         let url = el.attr("href")
         let title = el.attr("title")
         el.html("")
+        var short = ""
         if(      url.indexOf('youtube') >= 0 )  el.get(0).style.backgroundImage = "url(resorces/icons/youtube.png)"
         else if( url.indexOf('facebook') >= 0 ) el.get(0).style.backgroundImage = "url(resorces/icons/facebook.png)"
         else if( url.indexOf('glovo') >= 0 )    el.get(0).style.backgroundImage = "url(resorces/icons/glovo.png)"
@@ -49,16 +50,16 @@ function loadFromLocal(){
         else{
             el.get(0).style.backgroundImage = "none"
             if( title.split(' ').length >= 3 ){
-                var short = title.split(' ')[0][0].toUpperCase() + title.split(' ')[1][0].toUpperCase() + title.split(' ')[2][0].toUpperCase()
+                short = title.split(' ')[0][0].toUpperCase() + title.split(' ')[1][0].toUpperCase() + title.split(' ')[2][0].toUpperCase()
             }
             else if( title.split(' ').length == 2 ) {
-                var short = title.split(' ')[0][0].toUpperCase() + title.split(' ')[0][1].toLowerCase() + title.split(' ')[1][0].toUpperCase()
+                short = title.split(' ')[0][0].toUpperCase() + title.split(' ')[0][1].toLowerCase() + title.split(' ')[1][0].toUpperCase()
             }
             else if(title.length>=3){
-                var short = title[0].toUpperCase() + title[1].toLowerCase() + title[2].toLowerCase()
+                short = title[0].toUpperCase() + title[1].toLowerCase() + title[2].toLowerCase()
             }
             else{
-                var short = title
+                short = title
             }
         }
         el.html(short)
