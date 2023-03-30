@@ -14,6 +14,8 @@ function loadFromLocal(){
 
     let defaultData = { html:"", wallpaper:"" }
     defaultData.html = `
+    let defaultData = { html:"", wallpaper:"" }
+    defaultData.html = `
         <button id="add-btt">+</button>
         <a href="https://www.youtube.com" title="youtube"><img src="resorces/link-icons/youtube.svg"/></a>
         <a href="https://www.facebook.com" title="facebook"><img src="resorces/link-icons/facebook.svg"/></a>
@@ -29,6 +31,10 @@ function loadFromLocal(){
 
     $('main').html(data.html)
 
+    $('body').css('background',data.wallpaper)
+    $('body').css('backgroundPosition','center')
+    $('body').css('backgroundSize','cover')
+    
     $('body').css('background',data.wallpaper)
     $('body').css('backgroundPosition','center')
     $('body').css('backgroundSize','cover')
