@@ -3,30 +3,67 @@
 *{
     margin: 0;
     padding: 0;
+    border: none;
+    margin: none;
+    padding: none;
+    text-decoration: none;
     user-select: none;
+    font-family: 'Poppins', sans-serif;	
+    color: #fff;
 }
 
 body{
-    font-family: 'Poppins', sans-serif;	
+    height: 100vh;
+}
+
+.dotted,body{
+    background-image: radial-gradient(#555 1px, transparent 0px);
+    background-position: -25px -25px;
+    background-size: 50px 50px;    
     background-color: #222;
-    color: #fff;
+}
 
-    height: 100vh;
-    background: url(../resorces/wallpapers/wallpaper0.png);
+/* body{
+    background-image: url(/resorces/wallpapers/wallpaper0.png);
     background-size: cover;
-    background-position: center;
+    background-position: 0px 0px;
+} */
 
-    height: 100vh;
+.outline,#settings-btt,a{
+    outline: 1px solid #555;
+    background: none;
+}
+
+.glass{
+    background-color: #ffffff22;
+    backdrop-filter: blur(100px);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+button{
+    cursor: pointer;
+    height: 50px;
+    width: 50px;
+    border-radius: 10px;    
     display: flex;
+    justify-content: center;
     align-items: center;
-    justify-content: center;
 }
+/*PRZENIEŚC DO settings_menu.css !!!*/
+#settings-btt{  position: absolute;  top: 20px;  right: 20px;  }
+#settings-btt>img{  filter: drop-shadow(0px 0px 6px rgba(0, 0, 0, 1));  }
 
-#container{
-    position: absolute;
-    height: auto;
-    width: 100vw;
+a{
+    cursor: pointer;
+    display: block;
+    height: 100px;
+    width: 100px;
+    border-radius: 25px;
+    margin: 50px;
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;    
+    align-items: center;
+/*TEMP*/float: left;
 }
+a>img{  width: 70%; height: 70%; filter: brightness(0) invert() drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.6));  }
+a:hover>img{ filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.6));  }
