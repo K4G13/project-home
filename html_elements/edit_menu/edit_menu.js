@@ -8,7 +8,7 @@ function open_edit_menu(el){
     }
     else{
         $edit_menu.get(0).style.animationDuration = "500ms"
-        $edit_menu.get(0).style.animationName = "in"
+        $edit_menu.get(0).style.animationName = "inLeft"
     }
         
     $('body').append($edit_menu)
@@ -35,7 +35,6 @@ function open_edit_menu(el){
     })
 
     //buttons logic
-    // $('#edit_menu #close').on('click', function() {  close_edit_menu()  })
     $('#edit_menu #cancel').on('click', function() {  close_edit_menu()  })
     $('#edit_menu #save').on('click', function() {  edit_link(el); close_edit_menu() })
 
@@ -43,7 +42,7 @@ function open_edit_menu(el){
 
 function close_edit_menu(){
     $edit_menu.get(0).style.animationDuration = "500ms"
-    $edit_menu.get(0).style.animationName = "out"
+    $edit_menu.get(0).style.animationName = "outLeft"
     setTimeout(()=>{  $edit_menu.remove()  },450)    
 }
 
