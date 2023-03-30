@@ -8,23 +8,14 @@
     text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
     animation-duration: 500ms;
 }
-@keyframes in {
+@keyframes inLeft {
   from {transform: translate(-100%)}
   to {transform: translate(0)}
 }
-@keyframes out {
+@keyframes outLeft {
     from {transform: translate(0)} 
     to {transform: translate(-100%)}
-  }
-
-/* #edit_menu button#close{
-    position: absolute;
-    top: 25px; right: 25px;
-    background-color: #ff2e2e;
-    font-weight: 700;
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-} */
+}
 
 #edit_menu h1{
     font-size: 24px;
@@ -122,12 +113,6 @@
     justify-content: center;
 }
 #edit_menu div#footer button{
-    font-weight: 500;
-    font-size: 16px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 0px 0px 4px rgba(0, 0, 0, 1);
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
     margin: 10px;
 }
 #edit_menu div#footer button#save{
