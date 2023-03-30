@@ -13,6 +13,7 @@ $(document).on('click', function() {
 })
 
 const $context_menu = $('<div>').attr('id',"context_menu").addClass('glass').load('html_elements/context_menu/context_menu.html')
+
 function close_contextmenu(){ 
     $context_menu.remove() 
 }
@@ -33,40 +34,29 @@ function open_contextmenu(el,event){
         $context_menu.css('top',`${event.pageY - $context_menu.height()}px`)
 
     $('#context_menu #openTT').on('click', function() {
-        openLinkInCurrentTab(el)
+        if( $(el).attr('href') )
+            window.location.href = $(el).attr('href')
     })
 
     $('#context_menu #openNT').on('click', function() {
-        openLinkInNewTab(el)
-    })
-
-    $('#context_menu #edit').on('click', function() {
-        console.log("EDIT",el)
+        if( $(el).attr('href') )
+            window.open($(el).attr('href'), '_blank')
     })
     
     $('#context_menu #del').on('click', function() {
-        deleteLink(el)
+        $(el).animate({
+                width: 0,
+                marginLeft: 0,
+                marginRight: 0
+            }, 500, function() { el.remove(); saveLocaly() })
     })    
 
-}
-
-function openLinkInCurrentTab(el){
-    window.location.href = $(el).attr('href')
-}
-function openLinkInNewTab(el){
-    window.open($(el).attr('href'), '_blank')
-}
-function deleteLink(el){
-
-    $(el).animate({
-            width: 0,
-            marginLeft: 0,
-            marginRight: 0
-        }, 500, function() { el.remove() })
+    $('#context_menu #edit').on('click', function() {
+        open_edit_menu(el)
+    })
     
-}
-function editLink(el){
-
-    
+    $('#context_menu #inspect').on('click', function() {
+        console.log(el)
+    })
 
 }

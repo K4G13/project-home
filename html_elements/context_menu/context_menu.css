@@ -1,6 +1,7 @@
 #context_menu{
     position: absolute;
     border-radius: 10px;
+    width: 180px;
 }
 
 #context_menu li{
