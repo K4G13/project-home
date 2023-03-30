@@ -1,0 +1,125 @@
+#edit_menu{
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    height: calc(100vh - 40px);
+    width: 600px;
+    border-radius: 25px;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+    animation-duration: 500ms;
+}
+@keyframes inLeft {
+  from {transform: translate(-100%)}
+  to {transform: translate(0)}
+}
+@keyframes outLeft {
+    from {transform: translate(0)} 
+    to {transform: translate(-100%)}
+}
+
+#edit_menu h1{
+    font-size: 24px;
+    font-weight: 500;
+    display: block;
+    height: 100px;
+    width: 100%;
+    line-height: 100px;
+    text-align: center;
+}
+
+#edit_menu #content{
+    width: 100%;
+    height: calc(100% - 100px - 100px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+#edit_menu #preview{    
+    height: 300px;
+    width: 300px;   
+    background-image: radial-gradient(#555 1px, transparent 0px);
+    background-position: -25px -25px;
+    background-size: 50px 50px;    
+    background-color: #222;
+    border-radius: 25px;
+    box-shadow: inset 0px 0px 20px #000000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#edit_menu #preview::after{
+    position: absolute;
+    top: 0; 
+    left: 0;
+    content: "preview";
+    font-weight: 400;
+    transform: translate(-80%,170%) rotate(90deg);
+}
+
+#edit_menu #a_mock{
+    cursor: pointer;
+    display: block;
+    height: 150px;
+    width: 150px;
+    border-radius: 25px;
+    margin: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-shadow: 0px 0px 2px rgba(0, 0, 0, 1);
+}
+#edit_menu #a_mock>img{  width: 60%; height: 60%; filter: brightness(0) invert() drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.6));  }
+#edit_menu #a_mock:hover>img{ filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.6));  }
+
+#edit_menu li{
+    list-style: none;
+    display: flex;
+    margin-top: 30px;
+}
+
+#edit_menu li h2{
+    font-weight: 400;
+    font-size: 16px;
+    height: 50px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-shadow: 0px 0px 10px rgba(0, 0, 0, 0.6);
+}
+#edit_menu li input{    
+    height: 50px;
+    width: 380px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    background-color: #222;
+    box-shadow: inset 0px 0px 20px #000000;
+}
+
+#edit_menu div#footer{
+    position: absolute;
+    bottom: 0;
+    box-shadow: none;
+    width: 100%;
+    padding-bottom: 20px;
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px;
+    display: flex;
+    justify-content: center;
+}
+#edit_menu div#footer button{
+    margin: 10px;
+}
+#edit_menu div#footer button#save{
+    width: 350px;
+    background-color: #FFAC4A;
+}
+#edit_menu div#footer button#cancel{
+    width: 150px;
+    background-color: #ff2e2e;
+}
