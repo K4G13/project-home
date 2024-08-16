@@ -1,11 +1,10 @@
-import { ViteRuntime } from "vite/runtime";
-import type { tile_data } from "../types";
+import type { TileData } from "../types";
 import { writable } from 'svelte/store';
 import type { Subscriber } from "svelte/motion";
 
-class TilestoreClass {
+class TileStore {
 
-    data = writable<tile_data[]>();    
+    data = writable<TileData[]>();    
 
     constructor() {
         this.data.set([
@@ -15,15 +14,15 @@ class TilestoreClass {
         ]);
     } 
     
-    subscribe(run:Subscriber<tile_data[]>) {
+    subscribe(run:Subscriber<TileData[]>) {
         return this.data.subscribe(run);
     }
 
     add(){
         this.data.update(data => {
             let max = Math.max(...data.map(d => d.id));
+            max = Math.max(max, 0);
             data.push({ id: max+1, title: "New" });
-            console.log(data)
             return data;
         });
     }
@@ -37,5 +36,4 @@ class TilestoreClass {
 
 
 }
-
-export const tilestore = new TilestoreClass();
+export const tilestore = new TileStore();

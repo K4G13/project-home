@@ -21,35 +21,24 @@
 
 
 <script lang="ts">
-    import RectangleIcon from "$lib/assets/icons/Rectangle.svg"
-    import type { tile_data } from "$lib/types.ts";
-    import { gsap } from "gsap";
+    import type { TileData } from "$lib/types.ts";
+    import DefIcon from "$lib/assets/icons/Rectangle.svg" 
+    import { createEventDispatcher } from 'svelte'
 
-    export let data: tile_data;
 
-    function showTileAnimation(node:Node){
-        const duration = 1;
-        let tl = gsap.timeline();
+    export let data: TileData;
 
-        tl.from(node,{
-            duration,
-            opacity: 0,
-            scale: 0
-        }, `-=${duration * 0.75}`)
-
-        return {
-            /// GSAP's duration is in seconds. Svelte's is in miliseconds
-            duration: tl.totalDuration() * 1000,
-            tick: (t:number) => { tl.progress(t); }
-        }
+    const dispatch = createEventDispatcher()
+    function handleClick(e:MouseEvent) {
+        dispatch('tileRightClickEvent', { tileId: data.id, x: e.clientX, y: e.clientY })
     }
 
 </script>
 
-<a href="/" class='tile' transition:showTileAnimation>
+<a href="/" class='tile' on:contextmenu|preventDefault={handleClick}>
 
-    <img src={RectangleIcon} alt="icon" height="60" width="60">
-    [ { data.id<10 ? '0'+data.id : data.id } ]
+    <img src={DefIcon} alt="icon" height="60" width="60">
+    [ { data.id<10 ? '0'+data.id : data.id } ]    
     {data.title || "No Title"}
 
 </a>
