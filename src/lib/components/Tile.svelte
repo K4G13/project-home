@@ -1,3 +1,26 @@
+<script lang="ts">
+    import type { TileData } from "$lib/types.ts";
+    import DefIcon from "$lib/assets/icons/Rectangle.svg" 
+    import { createEventDispatcher } from 'svelte'
+
+    export let data: TileData;
+
+    const dispatch = createEventDispatcher()
+    function handleClick(e:MouseEvent) {
+        dispatch('tileRightClickEvent', { tileId: data.id, x: e.clientX, y: e.clientY })
+    }
+
+</script>
+
+<a href="/" class='tile' on:contextmenu|preventDefault={handleClick}>
+
+    <img src={DefIcon} alt="icon" height="60" width="60">
+    [ { data.id<10 ? '0'+data.id : data.id } ]    
+    {data.title || "No Title"}
+
+</a>
+    
+
 <style type="postcss">
 
     .tile{ @apply
@@ -18,30 +41,5 @@
     }
 
 </style>
-
-
-<script lang="ts">
-    import type { TileData } from "$lib/types.ts";
-    import DefIcon from "$lib/assets/icons/Rectangle.svg" 
-    import { createEventDispatcher } from 'svelte'
-
-
-    export let data: TileData;
-
-    const dispatch = createEventDispatcher()
-    function handleClick(e:MouseEvent) {
-        dispatch('tileRightClickEvent', { tileId: data.id, x: e.clientX, y: e.clientY })
-    }
-
-</script>
-
-<a href="/" class='tile' on:contextmenu|preventDefault={handleClick}>
-
-    <img src={DefIcon} alt="icon" height="60" width="60">
-    [ { data.id<10 ? '0'+data.id : data.id } ]    
-    {data.title || "No Title"}
-
-</a>
-    
 
 

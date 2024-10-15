@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import DefIcon from "$lib/assets/icons/Rectangle.svg" 
     export let x = 0;
     export let y = 0;
