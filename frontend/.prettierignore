@@ -1,6 +1,42 @@
-# Package Managers
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+build/
+
+# Database
+*.db
+*.sqlite
+
+# Logs
+*.log
+logs/
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+
+# Prisma generated files
+prisma/migrations/
+
+# Package manager files
 package-lock.json
-pnpm-lock.yaml
 yarn.lock
-bun.lock
-bun.lockb
+pnpm-lock.yaml
+
+# Coverage reports
+coverage/
+
+# Temporary files
+*.tmp
+*.temp

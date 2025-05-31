@@ -1,8 +1,29 @@
 {
   "folders": [
     {
+      "name": "FRONTEND 🌴",
       "path": "./frontend"
+    },
+    {
+      "name": "BACKEND 🔥",
+      "path": "./backend"
+    },
+    {
+      "name": "SHARED 🥸",
+      "path": "./shared"
     }
   ],
-  "settings": {}
+  "settings": {
+    "typescript.preferences.includePackageJsonAutoImports": "auto",
+    "eslint.workingDirectories": ["frontend", "backend", "shared"],
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": "explicit"
+    },
+    "files.exclude": {
+      "**/node_modules": true,
+      "**/dist": true,
+      "**/build": true,
+      "**/.svelte-kit": true
+    }
+  }
 }
