@@ -24,32 +24,26 @@ let WARNING_COUNTER = 0;
 let INFO_COUNTER = 0;
 
 export class Logger {
-    log(message: string, ...optionalParams: any[]) {
-        console.log(message, ...optionalParams);
+    log(...optionalParams: any[]) {
+        console.log(...optionalParams);
     }
 
-    color(message: string, color: string, ...optionalParams: any[]) {
-        console.log((COLORS as any)[color] || COLORS.base, message, ...optionalParams, COLORS.base);
+    color(color: string, ...optionalParams: any[]) {
+        console.log((COLORS as any)[color] || COLORS.base, ...optionalParams, COLORS.base);
     }
-    info(message: string, ...optionalParams: any[]) {
+    info(...optionalParams: any[]) {
         const label = `${COLORS.blue}[INFO][${INFO_COUNTER++}]${COLORS.base}`;
-        console.log(label, message, ...optionalParams);
+        console.log(label, ...optionalParams);
     }
 
-    warring(message: string, ...optionalParams: any[]) {
+    warring(...optionalParams: any[]) {
         const label = `${COLORS.yellow}[WARNING][${WARNING_COUNTER++}]${COLORS.base}`;
-        console.log(label, message, ...optionalParams);
+        console.log(label, ...optionalParams);
     }
 
-    error(error: unknown, ...optionalParams: any[]) {
+    error(...optionalParams: any[]) {
         const label = `${COLORS.red}[ERROR][${ERROR_COUNTER++}]${COLORS.base}`;
-        let message: string;
-
-        if (error instanceof Error) message = error.stack || error.message;
-        else if (typeof error === 'string') message = error;
-        else message = JSON.stringify(error);
-
-        console.log(label, message, ...optionalParams);
+        console.log(label, ...optionalParams);
     }
 }
 
