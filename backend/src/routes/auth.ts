@@ -59,4 +59,35 @@ router.post('/register', async (req: Request, res: Response) => {
     }
 });
 
+router.post('/login', async (req: Request, res: Response) => {
+    try {
+        const { username, password } = req.body;
+
+        if (!username || !password) {
+            logger.warring('Missing required fields');
+            return res.status(400).json({ error: 'Missing required fields' });
+        }
+
+        const user = await prisma.user.findUnique({ where: { username } });
+
+        if (!user) {
+            logger.warring(`User ${username} not found`);
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            logger.warring(`Invalid password for user ${username}`);
+            return res.status(401).json({ error: 'Invalid credentials' });
+        }
+
+        logger.info(`User ${username} logged in`);
+        res.json({ message: 'Login successful' });
+    } catch (error) {
+        logger.error(error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;

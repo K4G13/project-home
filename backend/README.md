@@ -1,3 +1,7 @@
+`npm install`
+`npm run db:setup`
+`npm run dev`
+
 ```
  ___  __    ___   ___  ________    _____  ________
 |\  \|\  \ |\  \ |\  \|\   ____\  / __  \|\_____  \
@@ -27,9 +31,3 @@
      / /  /       \  /  /        / /  /       \ \__\
      \/__/         \/__/         \/__/         \/__/
 ```
-
-`npx prisma migrate dev --name init`
-
-`npx prisma generate`
-
-`npx prisma migrate reset`

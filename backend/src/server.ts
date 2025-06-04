@@ -17,7 +17,7 @@ app.use('/api', authRouter);
 const PORT: number = parseInt(process.env.PORT || '3000');
 const ASCIlogo = require('./utils/ascii-logo');
 app.listen(PORT, () => {
-    logger.color('red', ASCIlogo);
+    logger.color('yellow', ASCIlogo);
     logger.log(`🔥 running on port: ${PORT}`);
     logger.log(`🔸 http://localhost:${PORT}\n`);
 });

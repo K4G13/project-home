@@ -6,7 +6,13 @@
         "build": "tsc",
         "start": "node dist/server.js",
         "dev": "nodemon src/server.ts",
-        "dev:build": "tsc --watch"
+        "dev:build": "tsc --watch",
+        "db:setup": "npx prisma generate && npx prisma migrate dev --name init",
+        "db:init": "npx prisma migrate dev --name init",
+        "db:generate": "npx prisma generate",
+        "db:seed": "npx prisma db seed",
+        "db:reset": "npx prisma migrate reset",
+        "db:studio": "npx prisma studio"
     },
     "dependencies": {
         "@prisma/client": "^6.9.0",
@@ -25,5 +31,8 @@
         "nodemon": "^3.1.10",
         "ts-node": "^10.9.2",
         "typescript": "^5.8.3"
+    },
+    "prisma": {
+        "seed": "ts-node prisma/seed.ts"
     }
 }
