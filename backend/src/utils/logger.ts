@@ -32,17 +32,17 @@ export class Logger {
         console.log((COLORS as any)[color] || COLORS.base, ...optionalParams, COLORS.base);
     }
     info(...optionalParams: any[]) {
-        const label = `${COLORS.blue}[INFO][${INFO_COUNTER++}]${COLORS.base}`;
+        const label = `${COLORS.cyan}[ INFO ][${INFO_COUNTER++}]${COLORS.base}`;
         console.log(label, ...optionalParams);
     }
 
     warring(...optionalParams: any[]) {
-        const label = `${COLORS.yellow}[WARNING][${WARNING_COUNTER++}]${COLORS.base}`;
+        const label = `${COLORS.yellow}[ WARNING ][${WARNING_COUNTER++}]${COLORS.base}`;
         console.log(label, ...optionalParams);
     }
 
     error(...optionalParams: any[]) {
-        const label = `${COLORS.red}[ERROR][${ERROR_COUNTER++}]${COLORS.base}`;
+        const label = `${COLORS.red}[ ERROR ][${ERROR_COUNTER++}]${COLORS.base}`;
         console.log(label, ...optionalParams);
     }
 }
