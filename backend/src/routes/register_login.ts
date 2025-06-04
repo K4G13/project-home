@@ -1,23 +1,13 @@
 const express = require('express');
-import { Request, Response } from 'express';
 const router = express.Router();
+import { Request, Response } from 'express';
 import { prisma } from '../utils/prisma';
 import { logger } from '../utils/logger';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const saltRounds = parseInt(process.env.BCRYPT_ROUNDS || '12');
-
-router.get('/users', async (req: Request, res: Response) => {
-    try {
-        const users = await prisma.user.findMany();
-        logger.info('[api/users]', users);
-        res.json(users);
-    } catch (error) {
-        logger.error(error);
-        res.status(500).json({ error: 'Internal Server Error' });
-    }
-});
-
+const JWT_SECRET = process.env.JWT_SECRET || 'SECRET';
 router.post('/register', async (req: Request, res: Response) => {
     try {
         const { email, username, password } = req.body;
@@ -29,7 +19,7 @@ router.post('/register', async (req: Request, res: Response) => {
 
         const existingUser = await prisma.user.findUnique({ where: { username } });
         if (existingUser) {
-            logger.warring(`Username ${existingUser.username} already exists`);
+            logger.warring(`Username "${existingUser.username}" already exists`);
             return res.status(400).json({ error: 'Username already exists' });
         }
 
@@ -51,17 +41,16 @@ router.post('/register', async (req: Request, res: Response) => {
             },
         });
 
-        logger.info('[api/register]', user);
+        logger.info('Registered', user);
         res.json(user);
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
     }
 });
-
 router.post('/login', async (req: Request, res: Response) => {
     try {
-        const { username, password } = req.body;
+        const { username, password, token } = req.body;
 
         if (!username || !password) {
             logger.warring('Missing required fields');
@@ -82,8 +71,12 @@ router.post('/login', async (req: Request, res: Response) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
-        logger.info(`User ${username} logged in`);
-        res.json({ message: 'Login successful' });
+        const new_token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
+            expiresIn: '24h',
+        });
+
+        logger.info(`User "${username}" logged in`);
+        res.json({ message: 'Login successful', token: new_token });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Internal Server Error' });
