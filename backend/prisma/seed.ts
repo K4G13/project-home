@@ -15,6 +15,7 @@ async function main() {
         data: {
             username: 'admin',
             password: await bcrypt.hash('123', saltRounds),
+            email: 'admin@example.com',
         },
     });
 
@@ -22,6 +23,7 @@ async function main() {
         data: {
             username: 'test',
             password: await bcrypt.hash('123', saltRounds),
+            email: 'test@example.com',
         },
     });
 

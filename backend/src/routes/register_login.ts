@@ -28,16 +28,16 @@ router.post('/register', async (req: Request, res: Response) => {
 
         const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-        //TODO dodać email
         const user = await prisma.user.create({
             data: {
                 username,
                 password: hashedPassword,
+                email: 'test@example.com',
             },
             select: {
                 id: true,
                 username: true,
-                createdAt: true,
+                created_at: true,
             },
         });
 
@@ -50,8 +50,7 @@ router.post('/register', async (req: Request, res: Response) => {
 });
 router.post('/login', async (req: Request, res: Response) => {
     try {
-        const { username, password, token } = req.body;
-
+        const { username, password } = req.body;
         if (!username || !password) {
             logger.warring('Missing required fields');
             return res.status(400).json({ error: 'Missing required fields' });
@@ -71,12 +70,13 @@ router.post('/login', async (req: Request, res: Response) => {
             return res.status(401).json({ error: 'Invalid credentials' });
         }
 
+        const expires_in = 60 * 1; // 5 min
         const new_token = jwt.sign({ id: user.id, username: user.username }, JWT_SECRET, {
-            expiresIn: '24h',
+            expiresIn: expires_in,
         });
 
         logger.info(`User "${username}" logged in`);
-        res.json({ message: 'Login successful', token: new_token });
+        res.json({ message: 'Login successful', username, token: new_token, expires_in });
     } catch (error) {
         logger.error(error);
         res.status(500).json({ error: 'Internal Server Error' });

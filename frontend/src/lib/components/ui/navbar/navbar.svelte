@@ -1,12 +1,13 @@
 <script>
 	import LightSwitch from '$lib/components/ui/light_switch/light_switch.svelte';
+	import Auth from '../auth/Auth.svelte';
 	import Button from '../button/button.svelte';
 </script>
 
 <nav class="flex items-center justify-between">
 	<span>🔥 Project ৹ <b>HOME</b></span>
 	<div class="flex items-center gap-2">
-		<Button variant="outline">_sign in</Button>
+		<Auth />
 		<LightSwitch />
 	</div>
 </nav>
